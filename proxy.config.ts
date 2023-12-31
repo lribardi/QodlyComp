@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProxyOptions } from 'vite';
 
-const TARGET = process.env.PROXY_SERVER || 'https://127.0.0.1:7443';
+const TARGET = process.env.PROXY_SERVER || 'http://127.0.0.1:7080';
 
 function sanitizeSetCookie(cookie = '') {
   return cookie.replace(/; secure/i, '');
