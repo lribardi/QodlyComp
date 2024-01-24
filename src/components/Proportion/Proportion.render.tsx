@@ -1,6 +1,7 @@
 import { useRenderer, useSources } from '@ws-ui/webform-editor';
 import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
+import "./proportion.css";
 
 import { IProportionProps } from './Proportion.config';
 
@@ -27,12 +28,10 @@ const Proportion: FC<IProportionProps> = ({ barcolor, style, className, classNam
       let color = barcolor;
       if (color === '' || color == null)
         color = 'green';
-      //setbarstyle(`color:${barcolor};width:${value}px;`);
+      
       setbarstyle({
         backgroundColor: color,
         width: v,
-        display: "inline-block",
-        height: 24,
       });
     };
 
@@ -43,12 +42,10 @@ const Proportion: FC<IProportionProps> = ({ barcolor, style, className, classNam
     let color = barcolor;
     if (color === '' || color == null)
       color = 'green';
-    //setbarstyle(`color:${barcolor};width:${value}px;`);
+    
     setbarstyle({
       backgroundColor: color,
       width: value,
-      display: "inline-block",
-      height: 24,
     });
 
     return () => {
@@ -59,7 +56,7 @@ const Proportion: FC<IProportionProps> = ({ barcolor, style, className, classNam
 
   return (
     <div ref={connect} style={style} className={cn(className, classNames)}>
-      <div style={barstyle}></div>
+      <div style={barstyle} className="proportionInside"></div>
     </div>
   );
 };
