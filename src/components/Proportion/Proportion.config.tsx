@@ -13,6 +13,7 @@ export default {
       barcolor: '',
       classNames: [],
       events: [],
+      maxValue: 100,
     },
     related: {
       settings: Settings(ProportionSettings, BasicSettings),
@@ -53,7 +54,7 @@ export default {
       },
     ],
     datasources: {
-      accept: ['string'],
+      accept: ['number'],
     },
   },
   defaultProps: {
@@ -64,4 +65,5 @@ export default {
 export interface IProportionProps extends webforms.ComponentProps {
   name?: string;
   barcolor?: string;
+  maxValue?: number;
 }

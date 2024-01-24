@@ -12,6 +12,11 @@ const commonSettings: TSetting[] = [
     key: 'barcolor',
     label: 'Bar Color',
     type: ESetting.COLOR_PICKER,
+  },
+  {
+    key: 'maxValue',
+    label: 'Max Value',
+    type: ESetting.NUMBER_FIELD,
   }
 ];
 

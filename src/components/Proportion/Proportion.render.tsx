@@ -5,7 +5,7 @@ import "./proportion.css";
 
 import { IProportionProps } from './Proportion.config';
 
-const Proportion: FC<IProportionProps> = ({ barcolor, style, className, classNames = [] }) => {
+const Proportion: FC<IProportionProps> = ({ maxValue, barcolor, style, className, classNames = [] }) => {
   const { connect } = useRenderer();
   const [value, setValue] = useState(0);
   const {
@@ -23,7 +23,9 @@ const Proportion: FC<IProportionProps> = ({ barcolor, style, className, classNam
     const listener = async (/* event */) => {
       console.log("event changed");
       const v = await ds.getValue<number>();
-      setValue(v || 20);
+      const maxv = maxValue || 1;
+      const proportion = v * 100 / maxv;
+      setValue(proportion);
 
       let color = barcolor;
       if (color === '' || color == null)
@@ -31,7 +33,7 @@ const Proportion: FC<IProportionProps> = ({ barcolor, style, className, classNam
       
       setbarstyle({
         backgroundColor: color,
-        width: v,
+        width: `${proportion}%`,
       });
     };
 
@@ -39,14 +41,16 @@ const Proportion: FC<IProportionProps> = ({ barcolor, style, className, classNam
 
     ds.addListener('changed', listener);
 
+    
     let color = barcolor;
     if (color === '' || color == null)
       color = 'green';
     
     setbarstyle({
       backgroundColor: color,
-      width: value,
+      width: `${value}%`,
     });
+    
 
     return () => {
       ds.removeListener('changed', listener);
